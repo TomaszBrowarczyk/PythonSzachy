@@ -74,7 +74,21 @@ class Gra:
 
 
     
-
+    def isCheck(self):
+        
+        king = King
+        kingDict = {}
+        pieceDict = {BLACK : [], WHITE : []}
+        for position,piece in self.gameboard.items():
+            if type(piece) == King:
+                kingDict[piece.Color] = position
+            print(piece)
+            pieceDict[piece.Color].append((piece,position))
+        #white
+        if self.canSeeKing(kingDict[WHITE],pieceDict[BLACK]):
+            self.message = "Biały gracz jest w szachu"
+        if self.canSeeKing(kingDict[BLACK],pieceDict[WHITE]):
+            self.message = "Czarny gracz jest w szachu"
 
 class Piece:
     
