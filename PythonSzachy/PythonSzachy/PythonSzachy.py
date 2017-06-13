@@ -15,6 +15,15 @@ import random
 WHITE = "white"
 BLACK = "black"
 
+class Gra:
+    
+    def __init__(self):
+        self.playersturn = BLACK
+        self.message = "Tutaj pojawiają się komunikaty"
+        self.gameboard = {}
+        self.placePieces()
+        print("Program Szachy w Python. Wprowadź ruchy w zapisie algebraicznym oddzielone spacją")
+        self.main()
 
 
 
@@ -130,3 +139,6 @@ słownik
 """
 
 uniDict = {WHITE : {Pawn : "♙", Rook : "♖", Knight : "♘", Bishop : "♗", King : "♔", Queen : "♕" }, BLACK : {Pawn : "♟", Rook : "♜", Knight : "♞", Bishop : "♝", King : "♚", Queen : "♛" }}
+
+
+Gra ()
