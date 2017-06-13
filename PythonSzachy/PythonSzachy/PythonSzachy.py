@@ -9,6 +9,9 @@ Gra Szachy
 """
 
 
+
+
+
 class Piece:
     
     def __init__(self,color,name):
@@ -113,3 +116,9 @@ class Pawn(Piece):
         if (x,y+self.direction) not in gameboard and Color == self.Color : answers.append((x,y+self.direction))
         
         return answers
+
+"""
+słownik
+"""
+
+uniDict = {WHITE : {Pawn : "♙", Rook : "♖", Knight : "♘", Bishop : "♗", King : "♔", Queen : "♕" }, BLACK : {Pawn : "♟", Rook : "♜", Knight : "♞", Bishop : "♝", King : "♚", Queen : "♛" }}
