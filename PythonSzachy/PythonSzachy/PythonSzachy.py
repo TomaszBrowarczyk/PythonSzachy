@@ -26,7 +26,54 @@ class Gra:
         self.main()
 
 
+    def placePieces(self):
 
+        for i in range(0,8):
+            self.gameboard[(i,1)] = Pawn(WHITE,uniDict[WHITE][Pawn],1)
+            self.gameboard[(i,6)] = Pawn(BLACK,uniDict[BLACK][Pawn],-1)
+            
+        placers = [Rook,Knight,Bishop,Queen,King,Bishop,Knight,Rook]
+        
+        for i in range(0,8):
+            self.gameboard[(i,0)] = placers[i](WHITE,uniDict[WHITE][placers[i]])
+            self.gameboard[((7-i),7)] = placers[i](BLACK,uniDict[BLACK][placers[i]])
+        placers.reverse()
+
+    
+
+    def main(self):
+        
+        while True:
+            self.printBoard()
+            print(self.message)
+            self.message = ""
+            startpos,endpos = self.parseInput()
+            try:
+                target = self.gameboard[startpos]
+            except:
+                self.message = "Nie mogłem znaleźć pionka; Indeks prawdopodobnie poza zasięgiem"
+                target = None
+                
+            if target:
+                print("znaleziono "+str(target))
+                if target.Color != self.playersturn:
+                    self.message = "Nie wolno ci poruszać tego pionka "
+                    continue
+                if target.isValid(startpos,endpos,target.Color,self.gameboard):
+                    self.message = "To jest ważny ruch"
+                    self.gameboard[endpos] = self.gameboard[startpos]
+                    del self.gameboard[startpos]
+                    self.isCheck()
+                    if self.playersturn == BLACK:
+                        self.playersturn = WHITE
+                    else : self.playersturn = BLACK
+                else : 
+                    self.message = "Nieprawidłowy ruch" + str(target.availableMoves(startpos[0],startpos[1],self.gameboard))
+                    print(target.availableMoves(startpos[0],startpos[1],self.gameboard))
+            else : self.message = "W tej przestrzeni nie ma pionka"
+
+
+    
 
 
 class Piece:
