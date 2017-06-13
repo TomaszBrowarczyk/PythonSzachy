@@ -90,6 +90,46 @@ class Gra:
         if self.canSeeKing(kingDict[BLACK],pieceDict[WHITE]):
             self.message = "Czarny gracz jest w szachu"
 
+
+
+
+    def canSeeKing(self,kingpos,piecelist):
+        
+        for piece,position in piecelist:
+            if piece.isValid(position,kingpos,piece.Color,self.gameboard):
+                return True
+                
+    def parseInput(self):
+        try:
+            a,b = input().split()
+            a = ((ord(a[0])-97), int(a[1])-1)
+            b = (ord(b[0])-97, int(b[1])-1)
+            print(a,b)
+            return (a,b)
+        except:
+            print("Wejście dekodowania błędów. Proszę spróbuj ponownie")
+            return((-1,-1),(-1,-1))
+
+
+    """def validateInput(self, *kargs):
+        for arg in kargs:
+            if type(arg[0]) is not type(1) or type(arg[1]) is not type(1):
+                return False
+        return True"""
+        
+    def printBoard(self):
+        print("  1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |")
+        for i in range(0,8):
+            print("-"*32)
+            print(chr(i+97),end="|")
+            for j in range(0,8):
+                item = self.gameboard.get((i,j)," ")
+                print(str(item)+' |', end = " ")
+            print()
+        print("-"*32)
+
+
+
 class Piece:
     
     def __init__(self,color,name):
