@@ -8,6 +8,14 @@ http://python101.readthedocs.io/pl/latest/pygame/tictactoe/index.html
 Gra Szachy
 """
 
+import itertools
+#import pygame
+import sys
+import random
+WHITE = "white"
+BLACK = "black"
+
+
 
 
 
